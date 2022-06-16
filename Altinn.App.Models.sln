@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1E1C9C17-6CF7-4558-B5CF-FFBB29EB7D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altinn.App.Models", "src\Altinn.App.Models\Altinn.App.Models.csproj", "{D2EFA9AB-D114-483A-835F-E83BC5DA031D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altinn.App.Models.Tests", "src\Altinn.App.Models.Tests\Altinn.App.Models.Tests.csproj", "{4F71432C-556C-434A-B6D0-43414ACEBDC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2EFA9AB-D114-483A-835F-E83BC5DA031D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2EFA9AB-D114-483A-835F-E83BC5DA031D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2EFA9AB-D114-483A-835F-E83BC5DA031D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2EFA9AB-D114-483A-835F-E83BC5DA031D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F71432C-556C-434A-B6D0-43414ACEBDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F71432C-556C-434A-B6D0-43414ACEBDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F71432C-556C-434A-B6D0-43414ACEBDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F71432C-556C-434A-B6D0-43414ACEBDC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2EFA9AB-D114-483A-835F-E83BC5DA031D} = {1E1C9C17-6CF7-4558-B5CF-FFBB29EB7D0F}
+		{4F71432C-556C-434A-B6D0-43414ACEBDC4} = {1E1C9C17-6CF7-4558-B5CF-FFBB29EB7D0F}
+	EndGlobalSection
+EndGlobal
