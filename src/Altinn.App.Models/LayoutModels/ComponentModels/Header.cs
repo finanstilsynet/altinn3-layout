@@ -4,7 +4,7 @@ public class Header : BaseComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]
-    public string? Size { get; set; } = null;
+    public string Size { get; set; } = "h2";
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     public HeaderSizes SizeEnum
