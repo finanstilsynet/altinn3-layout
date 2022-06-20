@@ -8,7 +8,6 @@
         "textResourceBindings": {
           "title": "0.info"
         },
-        "dataModelBindings": {},
         "size": "h2"
       },
       {
@@ -17,8 +16,7 @@
         "textResourceBindings": {
           "title": "0.info"
         },
-        "dataModelBindings": {},
-        "size": "h3"
+        "size": "Intentionally invalid size"
       },
       {
         "id": "12-444",

@@ -1,37 +1,34 @@
-using Altinn.App.Models.JsonConverters;
+using System.ComponentModel.DataAnnotations;
 
-namespace Altinn.App.Models.LayoutModels;
+namespace Altinn.App.Models;
 
 [JsonConverter(typeof(ComponentConverter))]
 public abstract class BaseComponent
 {
     [JsonPropertyName("id")]
     [JsonPropertyOrder(0)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+    [RegularExpression(@"^[0-9a-zA-Z][0-9a-zA-Z-]*[0-9a-zA-Z]$")]
     public string Id { get; set; } = default!;
 
     [JsonPropertyName("type")]
     [JsonPropertyOrder(1)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string Type { get; set; } = default!;
 
-    [JsonPropertyName("textResourceBindings")]
-    [JsonPropertyOrder(2)]
-    public Dictionary<string,string> TextResourceBindings { get; set; } = default!;
 
-    [JsonPropertyName("dataModelBindings")]
-    [JsonPropertyOrder(3)]
-    public Dictionary<string,string> DataModelBindings { get; set; } = default!;
 
     [JsonPropertyName("required")]
-    [JsonPropertyOrder(4)]
+    [JsonPropertyOrder(1000)]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool Required { get; set; } = false;
-    
+
     [JsonPropertyName("readOnly")]
-    [JsonPropertyOrder(5)]
+    [JsonPropertyOrder(1001)]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool ReadOnly { get; set; } = false;
 
-    [JsonPropertyOrder(6)]
+    [JsonPropertyOrder(1002)]
     [JsonPropertyName("hidden")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public bool Hidden { get; set; } = false;

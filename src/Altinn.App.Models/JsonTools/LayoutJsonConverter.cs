@@ -1,4 +1,4 @@
-namespace Altinn.App.Models.JsonTools;
+namespace Altinn.App.Models;
 
 public static class LayoutJsonSerializer
 {
@@ -21,11 +21,12 @@ public static class LayoutJsonSerializer
         WriteIndented = true,
     };
 
-    public static LayoutModels.Layout? Deserialize(string json)
+    public static Layout? Deserialize(string json)
     {
-        return JsonSerializer.Deserialize<LayoutModels.Layout>(json, _serializerOptions);
+        return JsonSerializer.Deserialize<Layout>(json, _serializerOptions);
     }
-    public static string Serialize(LayoutModels.Layout layout)
+
+    public static string Serialize(Layout layout)
     {
         return JsonSerializer.Serialize(layout, _serializerOptions);
     }
