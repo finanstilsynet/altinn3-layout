@@ -1,21 +1,9 @@
 using Altinn.App.Models;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Altinn.App.Models.Tests.SerializationTests;
 
 public class LayoutRoundTrip
 {
-    [Theory]
-    [InlineData("HeaderComponentEqual.json")]
-    public async Task RoundTripEqualTest(string filename)
-    {
-        var input = await File.ReadAllTextAsync(Path.Join("SerializationTests", "Layout", "RoundTripTestLayouts", filename));
-        var obj = LayoutJsonSerializer.Deserialize(input)!;
-        var inputConverted = LayoutJsonSerializer.Serialize(obj).ReplaceLineEndings("\n");
-        inputConverted.Should().Be(input);
-    }
-
     [Theory]
     [InlineData("HeaderComponentEqual.json")]
     public async Task RoundTripEqualDefaultSerializerOptionsTest(string filename)
@@ -61,8 +49,8 @@ public class LayoutRoundTrip
     {
         var input = await File.ReadAllTextAsync(Path.Join("SerializationTests", "Layout", "RoundTripTestLayouts", filenameInput));
         var expected = await File.ReadAllTextAsync(Path.Join("SerializationTests", "Layout", "RoundTripTestLayouts", filenameExpected));
-        var obj = LayoutJsonSerializer.Deserialize(input)!;
-        var inputConverted = LayoutJsonSerializer.Serialize(obj).ReplaceLineEndings("\n");
+        var obj = JsonSerializer.Deserialize<Layout>(input)!;
+        var inputConverted = JsonSerializer.Serialize(obj, new JsonSerializerOptions { WriteIndented = true }).ReplaceLineEndings("\n");
         inputConverted.Should().Be(expected);
     }
 }
