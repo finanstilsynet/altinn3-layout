@@ -7,9 +7,9 @@ public class BooleanLayoutDynamicsExprConverter : JsonConverter<BooleanLayoutDyn
         return reader.TokenType switch
         {
             JsonTokenType.StartObject => ReadObject(ref reader, typeToConvert, options),
-            JsonTokenType.False => false,
-            JsonTokenType.True => true,
-            _=> throw new JsonException("Reading BooleanExpressionFailed")
+            JsonTokenType.False => new() { Value = false },
+            JsonTokenType.True => new() { Value = true },
+            _ => throw new JsonException("Reading BooleanExpressionFailed")
         };
     }
     public BooleanLayoutDynamicsExprWrapper ReadObject(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -23,7 +23,7 @@ public class BooleanLayoutDynamicsExprConverter : JsonConverter<BooleanLayoutDyn
 
     public override void Write(Utf8JsonWriter writer, BooleanLayoutDynamicsExprWrapper value, JsonSerializerOptions options)
     {
-        if(value.Root != null)
+        if (value.Root != null)
         {
             JsonSerializer.Serialize(writer, (object?)(value.Root), options);
         }

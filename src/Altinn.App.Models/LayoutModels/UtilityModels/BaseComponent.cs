@@ -16,20 +16,18 @@ public abstract class BaseComponent
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
     public string Type { get; set; } = default!;
 
-
-
-    [JsonPropertyName("required")]
     [JsonPropertyOrder(1000)]
+    [JsonPropertyName("required")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-    public bool Required { get; set; } = false;
+    public BooleanLayoutDynamicsExprWrapper? Required { get; set; }
 
-    [JsonPropertyName("readOnly")]
     [JsonPropertyOrder(1001)]
+    [JsonPropertyName("readOnly")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-    public bool ReadOnly { get; set; } = false;
+    public BooleanLayoutDynamicsExprWrapper? ReadOnly { get; set; }
 
     [JsonPropertyOrder(1002)]
     [JsonPropertyName("hidden")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
-    public bool Hidden { get; set; } = false;
+    public BooleanLayoutDynamicsExprWrapper? Hidden { get; set; }
 }

@@ -1,8 +1,8 @@
 using Altinn.App.Models;
 
-namespace Altinn.App.Models.Tests.SerializationTests.ExpressionTests;
+namespace Altinn.App.Models.Tests.SerializationTests.Expression;
 
-public class ExpressionRoundTrip
+public class BasicExpressionTests
 {
     [Fact]
     public void Expression_TrueAsExpression_ReturnsBooleanExpressionOfValue()
@@ -46,6 +46,7 @@ public class ExpressionRoundTrip
         Action act = () => JsonSerializer.Deserialize<BooleanLayoutDynamicsExprWrapper>(input);
         act.Should().Throw<JsonException>();
     }
+
     [Fact]
     public void Expression_Function_ReturnsValidFunction()
     {
@@ -58,6 +59,26 @@ public class ExpressionRoundTrip
         var functionExpression = (FunctionExpression)output.Root!;
         functionExpression.Function.Should().Be("equals");
         functionExpression.Args.Should().BeEmpty();
+        
+        var serialized = JsonSerializer.Serialize(output);
+        serialized.Should().Be(input);
+    }
+    
+    [Fact]
+    public void Expression_Function_ReturnsValidFunctionWithArguments()
+    {
+        var input = @"{""function"":""equals"",""args"":[{""dataModel"":""test.path""}]}";
+        var output = JsonSerializer.Deserialize<BooleanLayoutDynamicsExprWrapper>(input)!;
+        output.Should().NotBeNull();
+        output.Value.Should().BeNull();
+        output.Root.Should().NotBeNull();
+        output.Root.Should().BeOfType<FunctionExpression>();
+        var functionExpression = (FunctionExpression)output.Root!;
+        functionExpression.Function.Should().Be("equals");
+        functionExpression.Args.Should().HaveCount(1);
+        var firstArg = functionExpression.Args.Single();
+        firstArg.Should().BeOfType<DataModelExpression>();
+        ((DataModelExpression)firstArg).DataModel.Should().Be("test.path");
         
         var serialized = JsonSerializer.Serialize(output);
         serialized.Should().Be(input);

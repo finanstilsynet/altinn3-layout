@@ -1,5 +1,8 @@
 namespace Altinn.App.Models;
 
+/**
+ * Class that either represents a boolean value, or an expression that can be evaluated to a boolean.
+ */
 [JsonConverter(typeof(BooleanLayoutDynamicsExprConverter))]
 public class BooleanLayoutDynamicsExprWrapper
 {
