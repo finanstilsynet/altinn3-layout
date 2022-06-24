@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class AttachmentList : BaseTextComponent
+public record AttachmentList : BaseTextComponent
 {
     [JsonPropertyName("dataTypeIds")]
     [JsonPropertyOrder(100)]

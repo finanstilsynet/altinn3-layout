@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Dropdown : BaseDataComponent
+public record Dropdown : BaseDataComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

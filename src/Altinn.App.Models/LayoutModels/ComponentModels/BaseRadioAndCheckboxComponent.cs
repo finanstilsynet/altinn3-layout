@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public abstract class BaseRadioAndCheckboxComponent : BaseSelectionComponent
+public abstract record BaseRadioAndCheckboxComponent : BaseSelectionComponent
 {
     [JsonPropertyName("layout")]
     [JsonPropertyOrder(100)]

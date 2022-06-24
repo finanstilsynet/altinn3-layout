@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Options
+public record Options
 {
     [JsonPropertyName("label")]
     [Required]

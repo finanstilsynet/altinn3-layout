@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class NavigationButton : BaseTextComponent
+public record NavigationButton : BaseTextComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

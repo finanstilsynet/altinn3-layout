@@ -1,6 +1,6 @@
 namespace Altinn.App.Models;
 
-public class Grid : GridProps
+public record Grid : GridProps
 {
     [JsonPropertyName("innerGrid")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -11,7 +11,7 @@ public class Grid : GridProps
     public GridProps? LabelGrid { get; set; }
 }
 
-public class GridProps
+public record GridProps
 {
     [JsonPropertyName("xs")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class FileUploadWithTag : BaseDataComponent
+public record FileUploadWithTag : BaseDataComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

@@ -2,6 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Checkboxes : BaseSelectionComponent
+public record Checkboxes : BaseSelectionComponent
 {
 }

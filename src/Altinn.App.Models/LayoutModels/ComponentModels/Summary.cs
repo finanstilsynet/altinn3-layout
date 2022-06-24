@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Summary : BaseComponent
+public record Summary : BaseComponent
 {
     [JsonPropertyName("simplified")]
     [JsonPropertyOrder(100)]

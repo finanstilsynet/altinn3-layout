@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Datepicker : BaseDataComponent
+public record Datepicker : BaseDataComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

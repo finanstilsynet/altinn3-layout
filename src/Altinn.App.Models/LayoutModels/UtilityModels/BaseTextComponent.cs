@@ -1,6 +1,6 @@
 namespace Altinn.App.Models;
 
-public abstract class BaseTextComponent : BaseComponent
+public abstract record BaseTextComponent : BaseComponent
 {
     [JsonPropertyName("textResourceBindings")]
     [JsonPropertyOrder(2)]

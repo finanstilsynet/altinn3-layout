@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Altinn.App.Models;
 
 [JsonConverter(typeof(ComponentConverter))]
-public abstract class BaseComponent
+public abstract record BaseComponent
 {
     [JsonPropertyName("id")]
     [JsonPropertyOrder(0)]

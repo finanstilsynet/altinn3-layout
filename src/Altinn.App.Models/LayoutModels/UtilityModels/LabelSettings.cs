@@ -1,6 +1,6 @@
 namespace Altinn.App.Models;
 
-public class LabelSettings
+public record LabelSettings
 {
     [JsonPropertyName("optionalIndicator")]
     public bool OptionalIndicator { get; set; } = true;

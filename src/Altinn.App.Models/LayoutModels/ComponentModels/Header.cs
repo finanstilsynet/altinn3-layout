@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Header : BaseTextComponent
+public record Header : BaseTextComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public class Image : BaseTextComponent
+public record Image : BaseTextComponent
 {
     [JsonPropertyName("size")]
     [JsonPropertyOrder(100)]

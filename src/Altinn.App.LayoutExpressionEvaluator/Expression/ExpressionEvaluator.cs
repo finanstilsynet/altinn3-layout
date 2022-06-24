@@ -13,8 +13,12 @@ public class ExpressionEvaluator
         //       so we can evaluate expressions with references
     }
 
-    public bool Evaluate(BooleanLayoutDynamicsExprWrapper expression)
+    public bool? Evaluate(BooleanLayoutDynamicsExprWrapper? expression)
     {
+        if (expression == null)
+        {
+            return null;
+        }
         if(expression.Root == null)
         {
             return expression.Value ?? false;

@@ -1,6 +1,6 @@
 namespace Altinn.App.Models;
 
-public class Layout
+public record Layout
 {
     [JsonPropertyName("$schema")]
     [JsonIgnore(Condition = JsonIgnoreCondition.Never)]

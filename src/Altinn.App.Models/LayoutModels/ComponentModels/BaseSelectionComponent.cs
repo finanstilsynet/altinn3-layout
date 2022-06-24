@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Altinn.App.Models;
 
-public abstract class BaseSelectionComponent : BaseDataComponent
+public abstract record BaseSelectionComponent : BaseDataComponent
 {
     [JsonPropertyName("optionsId")]
     [JsonPropertyOrder(100)]
