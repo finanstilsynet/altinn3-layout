@@ -30,7 +30,8 @@ public record Header : BaseTextComponent
         };
         set
         {
-            Size = value switch {
+            Size = value switch
+            {
                 HeaderSizes.h2 => "h2",
                 HeaderSizes.h3 => "h3",
                 HeaderSizes.h4 => "h4",

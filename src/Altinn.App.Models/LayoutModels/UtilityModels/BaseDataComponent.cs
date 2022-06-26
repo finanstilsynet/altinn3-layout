@@ -33,7 +33,7 @@ public abstract record BaseDataComponent : BaseTextComponent
         }
         set
         {
-            Triggers = value.Select(trigger=> trigger.ToString()).ToList();
+            Triggers = value.Select(trigger => trigger.ToString()).ToList();
         }
     }
 

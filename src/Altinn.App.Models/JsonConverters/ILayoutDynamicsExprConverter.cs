@@ -4,8 +4,8 @@ namespace Altinn.App.Models;
 
 public class ILayoutDynamicsExprConverter : JsonConverter<ILayoutDynamicsExpr>
 {
-//     public override bool CanConvert(Type typeToConvert) =>
-//         typeof(ILayoutDynamicsExpr).IsAssignableFrom(typeToConvert);
+    //     public override bool CanConvert(Type typeToConvert) =>
+    //         typeof(ILayoutDynamicsExpr).IsAssignableFrom(typeToConvert);
 
     public override ILayoutDynamicsExpr? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -24,11 +24,11 @@ public class ILayoutDynamicsExprConverter : JsonConverter<ILayoutDynamicsExpr>
     {
         using var componentDocument = JsonDocument.ParseValue(ref reader);
 
-        if(componentDocument.RootElement.TryGetProperty("function", out var function))
+        if (componentDocument.RootElement.TryGetProperty("function", out var function))
         {
             return (ILayoutDynamicsExpr)componentDocument.Deserialize<FunctionExpression>(options)!;
         }
-        if(componentDocument.RootElement.TryGetProperty("dataModel", out var dataModel))
+        if (componentDocument.RootElement.TryGetProperty("dataModel", out var dataModel))
         {
             return (ILayoutDynamicsExpr)componentDocument.Deserialize<DataModelExpression>(options)!;
         }

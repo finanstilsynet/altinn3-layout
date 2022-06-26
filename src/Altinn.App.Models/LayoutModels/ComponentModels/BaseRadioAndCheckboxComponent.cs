@@ -12,7 +12,7 @@ public abstract record BaseRadioAndCheckboxComponent : BaseSelectionComponent
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     public SelectionLayouts LayoutEnum
     {
-        get 
+        get
         {
             return Layout switch
             {

@@ -11,11 +11,11 @@ public class BasicExpressionTests
         var output = JsonSerializer.Deserialize<BooleanLayoutDynamicsExprWrapper>(input)!;
         output.Value.Should().BeTrue();
         output.Root.Should().BeNull();
-        
+
         var serialized = JsonSerializer.Serialize(output);
         serialized.Should().Be(input);
     }
-    
+
     [Fact]
     public void Expression_FalseAsExpression_ReturnsBooleanExpressionOfValue()
     {
@@ -23,11 +23,11 @@ public class BasicExpressionTests
         var output = JsonSerializer.Deserialize<BooleanLayoutDynamicsExprWrapper>(input)!;
         output.Value.Should().BeFalse();
         output.Root.Should().BeNull();
-        
+
         var serialized = JsonSerializer.Serialize(output);
         serialized.Should().Be(input);
     }
-    
+
     [Fact]
     public void Expression_NullAsExpression_ReturnsBooleanExpressionOfValue()
     {
@@ -59,11 +59,11 @@ public class BasicExpressionTests
         var functionExpression = (FunctionExpression)output.Root!;
         functionExpression.Function.Should().Be("equals");
         functionExpression.Args.Should().BeEmpty();
-        
+
         var serialized = JsonSerializer.Serialize(output);
         serialized.Should().Be(input);
     }
-    
+
     [Fact]
     public void Expression_Function_ReturnsValidFunctionWithArguments()
     {
@@ -79,7 +79,7 @@ public class BasicExpressionTests
         var firstArg = functionExpression.Args.Single();
         firstArg.Should().BeOfType<DataModelExpression>();
         ((DataModelExpression)firstArg).DataModel.Should().Be("test.path");
-        
+
         var serialized = JsonSerializer.Serialize(output);
         serialized.Should().Be(input);
     }

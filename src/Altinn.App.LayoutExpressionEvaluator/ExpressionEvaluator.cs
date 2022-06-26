@@ -5,12 +5,16 @@ using Altinn.App.Models;
 public class ExpressionEvaluator
 {
     private readonly Dictionary<string, IFunctionImplementation> _functions;
-    public ExpressionEvaluator(IEnumerable<IFunctionImplementation> functions)
+    private readonly IDataModelAccessor _dataModel;
+    private readonly IInstanceContextAccessor _instanceContext;
+    public ExpressionEvaluator(
+        IEnumerable<IFunctionImplementation> functions,
+        IDataModelAccessor dataModel,
+        IInstanceContextAccessor instanceContextAccessor)
     {
         _functions = functions.ToDictionary(f => f.FunctionName);
-        // TODO: Consider injecting ServiceProvider
-        // TODO: Inject getters for datamodell/layoutModel/appsettings....
-        //       so we can evaluate expressions with references
+        _dataModel = dataModel;
+        _instanceContext = instanceContextAccessor;
     }
 
     public bool? Evaluate(BooleanLayoutDynamicsExprWrapper? expression)
@@ -19,7 +23,7 @@ public class ExpressionEvaluator
         {
             return null;
         }
-        if(expression.Root == null)
+        if (expression.Root == null)
         {
             return expression.Value ?? false;
         }
@@ -31,6 +35,8 @@ public class ExpressionEvaluator
         {
             FunctionExpression f => EvaluateFunction(f),
             LiteralValueExpression f => f.Value,
+            DataModelExpression d => EvaluateDataModel(d),
+            InstanceContextExpression ic => EvaluateInstanceContext(ic),
             _ => throw new ArgumentException($"Can't evaluate unknown expression {expression?.GetType().Name}")
         };
     }
@@ -39,5 +45,15 @@ public class ExpressionEvaluator
         var args = f.Args.Select(arg => Evaluate(arg)).ToList();
         var function = _functions[f.Function];
         return function.Evaluate(args);
+    }
+
+    public object? EvaluateDataModel(DataModelExpression d)
+    {
+        return _dataModel.GetModelProperty(d.DataModel);
+    }
+
+    public object? EvaluateInstanceContext(InstanceContextExpression ic)
+    {
+        return _instanceContext.GetInstanceContextProperty(ic.InstanceContext);
     }
 }
