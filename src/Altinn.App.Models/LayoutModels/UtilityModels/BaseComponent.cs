@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Altinn.App.Models;
 
 [JsonConverter(typeof(ComponentConverter))]
-public abstract record BaseComponent
+public record BaseComponent
 {
     [JsonPropertyName("id")]
     [JsonPropertyOrder(0)]
@@ -30,4 +30,7 @@ public abstract record BaseComponent
     [JsonPropertyName("hidden")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public BooleanLayoutDynamicsExprWrapper? Hidden { get; set; }
+
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> ExtraProperties { get; set; } = new Dictionary<string, JsonElement>();
 }

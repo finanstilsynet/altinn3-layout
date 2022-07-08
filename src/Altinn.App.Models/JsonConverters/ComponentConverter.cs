@@ -20,18 +20,33 @@ public class ComponentConverter : JsonConverter<BaseComponent>
         {
             throw new JsonException();
         }
+        
         using var componentDocument = JsonDocument.ParseValue(ref reader);
-        if (!componentDocument.RootElement.TryGetProperty("type", out var typeProperty))
+        if (!componentDocument.RootElement.TryGetProperty("type", out var typeProperty) || (typeProperty.ValueKind != JsonValueKind.String))
         {
             throw new JsonException("Missing field \"type\" in layout component");
         }
-        var typeName = typeProperty.GetString()!;
-        if (!ComponentClasses.TryGetValue(typeName, out var type))
-        {
-            throw new JsonException($"\"type\": \"{typeName}\" is invalid in layout component");
-        }
-        return (BaseComponent)componentDocument.Deserialize(type, options)!;
 
+        var typeName = typeProperty.GetString()!;
+        if (ComponentClasses.TryGetValue(typeName, out var type))
+        {
+            // component property "type" matches one of the registrerd types. Use that!
+            return (BaseComponent)componentDocument.Deserialize(type, options)!;
+        }
+        
+        if(componentDocument.RootElement.TryGetProperty("dataModelBindings", out _ ))
+        {
+            // Component is unknown, but has dataModelBindings
+            return (BaseComponent)componentDocument.Deserialize<BaseDataComponent>(options)!;
+        }
+
+        if (componentDocument.RootElement.TryGetProperty("textResourceBindings", out _ ))
+        {
+            // Component is unknown, but has textResourceBindings
+            return (BaseComponent)componentDocument.Deserialize<BaseTextComponent>(options)!;
+        }
+        // Component is unknown and don't have dataModelBindings, nor textResourceBindings
+        return componentDocument.Deserialize<BaseComponent>(options);
     }
 
     public override void Write(Utf8JsonWriter writer, BaseComponent value, JsonSerializerOptions options)
